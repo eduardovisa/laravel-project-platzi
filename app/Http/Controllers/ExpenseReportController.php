@@ -43,9 +43,11 @@ class ExpenseReportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ExpenseReport $expense_report)
     {
-        //
+        return view('expenseReport.show', [
+            'report' => $expense_report
+        ]);
     }
 
     /**
