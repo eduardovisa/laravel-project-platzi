@@ -49,7 +49,7 @@ class ExpenseReportController extends Controller
      */
     public function edit(string $id)
     {
-        $report = ExpenseReport::find($id);
+        $report = ExpenseReport::findOrFail($id);
 
         return view('expenseReport.edit', [
             'report' => $report
@@ -61,7 +61,7 @@ class ExpenseReportController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $report = ExpenseReport::find($id);
+        $report = ExpenseReport::findOrFail($id);
         $report->title = $request->get('title');
         $report->save();
 
@@ -73,6 +73,17 @@ class ExpenseReportController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $report = ExpenseReport::findOrFail($id);
+        $report->delete();
+
+        return redirect()->route('expense_reports.index');
+    }
+
+    public function confirmDelete($id) {
+        $report = ExpenseReport::findOrFail($id);
+
+        return view('expenseReport.confirmDelete', [
+            'report' => $report
+        ]);
     }
 }
