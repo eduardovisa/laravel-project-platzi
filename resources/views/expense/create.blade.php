@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group mb-4">
                     <label for="title">Amount:</label>
-                    <input type="text" class="form-control" id="amount" name="amount" placeholder="Type a amount" value="{{ old('amount') }}">
+                    <input type="number" class="form-control" id="amount" name="amount" placeholder="Type a amount" value="@if($errors->any()){{ old('amount') }}@else{{ 0 }}@endif">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
